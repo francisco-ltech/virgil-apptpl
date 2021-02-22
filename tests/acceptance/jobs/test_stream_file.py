@@ -5,7 +5,7 @@ from src.config import config
 from src.jobs import stream_file
 
 
-class TestFromFileJob:
+class TestStreamFileJob:
 
     def test_run(self, spark_session):
         """ Tests stream_file.run function that acts as a Spark job. """

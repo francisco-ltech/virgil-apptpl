@@ -1,2 +1,2 @@
 test:
-	pytest tests
+	python -m pytest .

@@ -14,4 +14,7 @@ lint:
 test:
 	python -m pytest tests
 
+api:
+	python src/api/delta_endpoint.py
+
 all: install lint test

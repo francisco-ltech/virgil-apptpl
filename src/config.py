@@ -8,7 +8,8 @@ config = {
     "delta-checkpoint-dir": "/tmp/my_app/checkpoint-dirs/delta",
     "delta-input-data": "/tmp/my_app/input-data/delta",
     "delta-output-data": "/tmp/my_app/output-data/delta",
-    "hadoop": "c:/tmp/my_app/src/jobs/hadoop/"
+    "hadoop_home": "c:/tmp/my_app/src/jobs/hadoop/"
 }
 
-os.environ['HADOOP_HOME'] = config.get("hadoop")
+if config.get("hadoop_home"):
+    os.environ['HADOOP_HOME'] = config.get("hadoop_home")

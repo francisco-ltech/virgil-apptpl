@@ -1,5 +1,5 @@
-from src.config import config
-from src.utilities.dataframe_validations import validate_presence_of_columns
+from configuration import config, get_config_setting
+from validations import validate_presence_of_columns
 
 from pyspark.sql import SparkSession
 
@@ -8,19 +8,26 @@ def run(spark, config):
 
     df = (spark.readStream
           .format("delta")
-          .load(config.get("delta-input-data")))
+          .load(get_config_setting(spark, config, "delta-input-data")))
+
 
     # You may want to clean or qualify data before sink ...
     validate_presence_of_columns(df, ["id"])
 
     query = (df.writeStream
              .format("delta")
-             .option("checkpointLocation", config.get("delta-checkpoint-dir"))
+             .option("checkpointLocation", get_config_setting(spark, config, "delta-checkpoint-dir"))
              .outputMode("append")
              .trigger(once=True)
-             .start(config.get("delta-output-data")))
+             .start(get_config_setting(spark, config, "delta-output-data")))
 
     query.awaitTermination()
+
+    new_df = (spark.read
+          .format("delta")
+          .load(get_config_setting(spark, config, "delta-output-data")))
+
+    new_df.printSchema()
 
 
 if __name__ == "__main__":
@@ -35,4 +42,5 @@ if __name__ == "__main__":
              .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
              .getOrCreate())
 
+    #print("pass")
     run(spark, config)

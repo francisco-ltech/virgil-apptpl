@@ -1,6 +1,6 @@
 import json
 
-from src.config import config
+from configuration import config
 from flask import Flask, jsonify
 from deltalake import DeltaTable
 

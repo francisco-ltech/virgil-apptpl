@@ -21,7 +21,6 @@ jobs:
 
       - name: Setup and install packages
         run: |
-          make setup
           make install
           
       - name: Unit tests

@@ -21,6 +21,4 @@ jobs:
         
       - name: Setup and install packages
         run: |
-          python -m venv antenv
-          source antenv/bin/activate
           python -m pip install --upgrade pip

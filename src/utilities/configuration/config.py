@@ -1,4 +1,5 @@
-import os 
+import sys,os
+sys.path.append(os.getcwd())
 
 config = {
     "virgil_fs": {"local": "/tmp/my_app", "databricks": "dbfs:/jobs/"}, 
@@ -8,7 +9,7 @@ config = {
     "delta-checkpoint-dir": {"local": "/tmp/my_app/checkpoint-dirs/delta", "databricks": "/mnt/raw/_checkpoints/delta/"},
     "delta-input-data": {"local": "/tmp/my_app/input-data/delta", "databricks": "/mnt/raw/delta_input_data/"},
     "delta-output-data": {"local": "/tmp/my_app/output-data/delta", "databricks": "/mnt/raw/delta_output_data/"},
-    "hadoop": "c:/tmp/my_app/hadoop/" 
+    "hadoop": os.path.join(os.getcwd(), 'src\jobs\hadoop') 
 }
 
 def get_config_setting(spark, config, key):

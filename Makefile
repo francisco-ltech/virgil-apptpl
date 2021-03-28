@@ -16,14 +16,19 @@ test:
 	make install_utilities
 	python -m pytest tests
 
+unit_test:
+	make build_utilities 
+	make install_utilities
+	python -m pytest tests/unit
+
 api:
 	python src/api/delta_endpoint.py
 
 build_utilities:
-	python .\src\utilities\setup.py bdist_wheel --universal
+	python .\src\utilities\setup.py develop
 
 install_utilities:
-	pip install --force-reinstall .\src\utilities\dist\utilities-0.1.0-py2.py3-none-any.whl --user
+	pip install .\src\utilities\
 
 databricks_deploy_dev:
 	make test

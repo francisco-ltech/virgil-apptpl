@@ -23,3 +23,8 @@ def get_config_setting(spark, config, key):
 
 os.environ['HADOOP_HOME'] = config.get("hadoop")
 
+
+print("*********************************************")
+print(os.environ['HADOOP_HOME'])
+print("*********************************************")
+

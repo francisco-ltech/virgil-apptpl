@@ -1,5 +1,6 @@
 import pytest
-from src.utilities.validations.dataframe_validations import *
+from validations import *
+from configuration import *
 
 
 class TestDataFrameValidations:

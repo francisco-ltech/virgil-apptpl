@@ -25,10 +25,10 @@ api:
 	python src/api/delta_endpoint.py
 
 build_utilities:
-	python .\src\utilities\setup.py develop
+	python src/utilities/setup.py develop
 
 install_utilities:
-	pip install .\src\utilities\
+	pip install src/utilities
 
 databricks_deploy_dev:
 	make test
